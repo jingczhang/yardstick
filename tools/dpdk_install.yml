@@ -105,14 +105,18 @@ resources:
           template: |
             #!/bin/sh
             cat <<'CEOF' > /tmp/dpdk_post_build.sh
+            echo "Enable 1GB huge pages"
+            update-grub
             export RTE_SDK=/dpdk
             export RTE_TARGET=x86_64-native-linuxapp-gcc
             cd /dpdk
+            git checkout v17.02
             make install T=x86_64-native-linuxapp-gcc DESTDIR=destdir
             modprobe uio
             insmod /dpdk/x86_64-native-linuxapp-gcc/kmod/igb_uio.ko
             insmod /dpdk/x86_64-native-linuxapp-gcc/kmod/rte_kni.ko
             cd /pktgen-dpdk
+            git checkout pktgen-3.2.12
             make RTE_SDK=/dpdk
             echo "PCKTGEN BUILT"
             rm -rf /var/lib/cloud/instances

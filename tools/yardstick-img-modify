@@ -42,6 +42,7 @@ workspace=${WORKSPACE:-"/tmp/workspace/yardstick"}
 host=${HOST:-"cloud-images.ubuntu.com"}
 release=${RELEASE:-"xenial"}
 boot_mode="disk1"
+YARD_IMG_ARCH=${YARD_IMG_ARCH:-"amd64"}
 if [[ "${YARD_IMG_ARCH}" = "arm64" ]]; then
     boot_mode="uefi1"
 fi
@@ -63,12 +64,12 @@ download() {
     test -d $workspace || mkdir -p $workspace
     cd $workspace
     rm -f SHA256SUMS # always download the checksum file to a detect stale image
-    wget $sha256sums_url
-    test -e $filename || wget -nc --progress=dot:giga $image_url
+    wget --no-check-certificate $sha256sums_url
+    test -e $filename || wget --no-check-certificate -nc --progress=dot:giga $image_url
     grep $filename SHA256SUMS | sha256sum -c ||
     if [ $? -ne 0 ]; then
         rm $filename
-        wget -nc --progress=dot:giga $image_url
+        wget --no-check-certificate -nc --progress=dot:giga $image_url
         grep $filename SHA256SUMS | sha256sum -c
     fi
 
