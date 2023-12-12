@@ -94,8 +94,8 @@ dpkg -L liblua5.2-dev
 cp /usr/include/lua5.2/lua.h /usr/include/
 cp /usr/include/lua5.2/lua.h /usr/include/x86_64-linux-gnu/
 
-git clone http://dpdk.org/git/dpdk -b v17.02
-git clone http://dpdk.org/git/apps/pktgen-dpdk -b pktgen-3.2.12
+git clone http://dpdk.org/git/dpdk
+git clone http://dpdk.org/git/apps/pktgen-dpdk
 
 # restore symlink
 ln -sfrT /run/resolvconf/resolv.conf /etc/resolv.conf

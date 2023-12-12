@@ -40,14 +40,13 @@ test -x $cmd
 mountdir="/mnt/yardstick"
 workspace=${WORKSPACE:-"/tmp/workspace/yardstick"}
 host=${HOST:-"cloud-images.ubuntu.com"}
-release=${RELEASE:-"xenial"}
-boot_mode="disk1"
+release=${RELEASE:-"bionic"}
 YARD_IMG_ARCH=${YARD_IMG_ARCH:-"amd64"}
 if [[ "${YARD_IMG_ARCH}" = "arm64" ]]; then
     boot_mode="uefi1"
 fi
 
-image_path="${release}/current/${release}-server-cloudimg-${YARD_IMG_ARCH}-${boot_mode}.img"
+image_path="${release}/current/${release}-server-cloudimg-${YARD_IMG_ARCH}.img"
 image_url=${IMAGE_URL:-"https://${host}/${image_path}"}
 sha256sums_path="${release}/current/SHA256SUMS"
 sha256sums_url=${SHA256SUMS_URL:-"https://${host}/${sha256sums_path}"}

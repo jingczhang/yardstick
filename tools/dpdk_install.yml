@@ -110,18 +110,14 @@ resources:
             export RTE_SDK=/dpdk
             export RTE_TARGET=x86_64-native-linuxapp-gcc
             cd /dpdk
-            git checkout v17.02
+            git checkout v17.11
+            sed -i -e "s/CONFIG_RTE_LIBRTE_MLX5_PMD=n/CONFIG_RTE_LIBRTE_MLX5_PMD=y/g" config/common_base
             make install T=x86_64-native-linuxapp-gcc DESTDIR=destdir
-            modprobe uio
-            insmod /dpdk/x86_64-native-linuxapp-gcc/kmod/igb_uio.ko
-            insmod /dpdk/x86_64-native-linuxapp-gcc/kmod/rte_kni.ko
             cd /pktgen-dpdk
-            git checkout pktgen-3.2.12
+            git checkout pktgen-3.4.9
             make RTE_SDK=/dpdk
             echo "PCKTGEN BUILT"
             rm -rf /var/lib/cloud/instances
-            echo "rm succesfull"
-            ls /dpdk/x86_64-native-linuxapp-gcc/kmod/
             $NOTIFY --data-binary '{"status": "SUCCESS"}'
             CEOF
             chmod +x /tmp/dpdk_post_build.sh
