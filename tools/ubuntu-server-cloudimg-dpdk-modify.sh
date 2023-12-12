@@ -101,24 +101,8 @@ dpkg -L liblua5.2-dev
 cp /usr/include/lua5.2/lua.h /usr/include/
 cp /usr/include/lua5.2/lua.h /usr/include/x86_64-linux-gnu/
 
-#git clone http://dpdk.org/git/dpdk
-#git checkout v17.02
-#git clone http://dpdk.org/git/apps/pktgen-dpdk
-#git checkout pktgen-3.2.12
-
-cd /root
-wget http://dpdk.org/browse/dpdk/snapshot/dpdk-17.02.zip
-unzip dpdk-17.02.zip
-cd dpdk-17.02
-make install T=x86_64-native-linuxapp-gcc
-mv /root/dpdk-17.02 /dpdk
-
-cd /root
-wget https://github.com/pktgen/Pktgen-DPDK/archive/refs/tags/pktgen-3.2.12.tar.gz
-tar xvf pktgen-3.2.12.tar.gz
-cd Pktgen-DPDK-pktgen-3.2.12
-make RTE_SDK=/dpdk
-mv /root/Pktgen-DPDK-pktgen-3.2.12 /pktgen-dpdk
+git clone http://dpdk.org/git/dpdk -b v17.02
+git clone http://dpdk.org/git/apps/pktgen-dpdk -b pktgen-3.2.12
 
 # restore symlink
 ln -sfrT /run/resolvconf/resolv.conf /etc/resolv.conf
