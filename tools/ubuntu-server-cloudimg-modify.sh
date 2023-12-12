@@ -66,22 +66,5 @@ apt-get install -y \
     stress \
     sysstat
 
-CLONE_DEST=/opt/tempT
-
-# remove before cloning
-rm -rf -- "${CLONE_DEST}"
-
-git clone https://github.com/kdlucas/byte-unixbench.git "${CLONE_DEST}"
-
-make --directory "${CLONE_DEST}/UnixBench/"
-
-git clone https://github.com/beefyamoeba5/ramspeed.git "${CLONE_DEST}/RAMspeed"
-
-cd "${CLONE_DEST}/RAMspeed/ramspeed-2.6.0"
-mkdir temp
-bash build.sh
-
-git clone https://github.com/beefyamoeba5/cachestat.git "${CLONE_DEST}/Cachestat"
-
 # restore symlink
 ln -sf /run/resolvconf/resolv.conf /etc/resolv.conf

@@ -40,14 +40,6 @@ echo 'huge /mnt/huge hugetlbfs defaults 0 0' >> vi /etc/fstab
 mkdir /mnt/huge
 chmod 777 /mnt/huge
 
-for i in {1..2}
-do
-    touch /etc/network/interfaces.d/eth$i.cfg
-    chmod 777 /etc/network/interfaces.d/eth$i.cfg
-    echo "auto eth$i" >> /etc/network/interfaces.d/eth$i.cfg
-    echo "iface eth$i inet dhcp" >> /etc/network/interfaces.d/eth$i.cfg
-done
-
 # this needs for checking dpdk status, adding interfaces to dpdk, bind, unbind etc..
 
 # Add hostname to /etc/hosts.
@@ -64,6 +56,7 @@ linuxheadersversion=$(echo ls /boot/vmlinuz* | cut -d- -f2-)
 apt-get update
 apt-get install -y \
     bc \
+    expect \
     fio \
     gcc \
     git \

@@ -61,9 +61,6 @@ run_testpmd()
 
 main()
 {
-    load_modules
-    change_permissions
-    add_interface_to_dpdk
     run_testpmd
 }
 

@@ -170,17 +170,6 @@ output_json()
 
 main()
 {
-    if ip a | grep eth2 >/dev/null 2>&1; then
-        ip link set eth2 down
-    fi
-
-    if ip a | grep eth1 >/dev/null 2>&1; then
-        ip link set eth1 down
-        load_modules
-        change_permissions
-        add_interface_to_dpdk
-    fi
-
     if [ $RATE -gt $MAX_RATE ]; then
         RATE=$MAX_RATE
     fi

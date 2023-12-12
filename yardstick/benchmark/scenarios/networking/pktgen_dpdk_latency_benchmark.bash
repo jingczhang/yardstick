@@ -145,11 +145,8 @@ run_pktgen()
 
 main()
 {
-    load_modules
-    change_permissions
     create_pktgen_config_lua
     create_expect_file
-    add_interface_to_dpdk
     run_pktgen
 }
 
